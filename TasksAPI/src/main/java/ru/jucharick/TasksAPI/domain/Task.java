@@ -63,21 +63,21 @@ public class Task {
      * кто запросил задачу (ID of the user)
      */
     @ManyToOne
-    @JoinColumn(name = "requestedBy")
+    @JoinColumn(name = "requested_by")
     private User requestedBy;
 
     /**
      * кто назначил задачу (ID of the user)
      */
     @ManyToOne
-    @JoinColumn(name = "assignedBy")
+    @JoinColumn(name = "assigned_by")
     private User assignedBy;
 
     /**
      * исполнитель (ID of the user)
      */
     @ManyToOne
-    @JoinColumn(name = "assigneeID")
+    @JoinColumn(name = "assignee_id")
     private User assigneeID;
     //endregion
 }

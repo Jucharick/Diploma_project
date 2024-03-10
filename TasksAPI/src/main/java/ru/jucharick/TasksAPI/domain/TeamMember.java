@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class TeamMember {
 
     @ManyToOne
-    @JoinColumn(name = "team_id", insertable = false, updatable = false)
+    @JoinColumn(name = "team_id")
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 }

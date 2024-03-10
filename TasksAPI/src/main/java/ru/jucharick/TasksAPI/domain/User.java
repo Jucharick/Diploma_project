@@ -27,13 +27,13 @@ public class User {
     /**
      * Имя
      */
-    @Column(name = "firstName", nullable = false, length = 20)
+    @Column(name = "first_name", nullable = false, length = 20)
     private String firstName ;
 
     /**
      * Фамилия
      */
-    @Column(name = "lastName", nullable = false, length = 50)
+    @Column(name = "last_name", nullable = false, length = 50)
     private String lastName ;
 
     /**

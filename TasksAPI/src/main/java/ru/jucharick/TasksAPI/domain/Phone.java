@@ -19,7 +19,7 @@ public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "phone_id")
-    private int phoneId;
+    private Long phoneId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")

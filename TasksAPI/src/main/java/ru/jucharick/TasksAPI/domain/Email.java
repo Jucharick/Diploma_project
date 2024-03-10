@@ -19,7 +19,7 @@ public class Email {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "email_id")
-    private int emailId;
+    private Long emailId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
