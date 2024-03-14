@@ -2,15 +2,33 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <title>Update user</title>
     </head>
     <body>
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Return to users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/tasks}">Return to tasks</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/task-create}">Create new task</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
         <div class="container">
             <form action="#" th:action="@{/user-update}" th:object="${user}" method="post" class="form-group">
-                <br/>
-                <label for="id">ID</label>
-                <input readonly type="number" th:field="*{id}" id="id" placeholder="ID" class="form-control form-control-lg">
                 <br/>
                 <label for="firstName">First name</label>
                 <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name" class="form-control form-control-lg">
@@ -18,17 +36,37 @@
                 <label for="lastName">Last name</label>
                 <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" class="form-control form-control-lg">
                 <br/>
+                <label for="patronymic">Patronymic</label>
+                <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Patronymic" class="form-control form-control-lg">
+                <br/>
+                <label for="birthday">Birthday</label>
+                <input type="date" th:field="*{birthday}" id="birthday" placeholder="Birthday" class="form-control form-control-lg">
+                <br/>
                 <label for="position">Position</label>
                 <input type="text" th:field="*{position}" id="position" placeholder="Position" class="form-control form-control-lg">
                 <br/>
                 <label for="team">Team</label>
                 <input type="text" th:field="*{team}" id="team" placeholder="Team" class="form-control form-control-lg">
                 <br/>
-                <label for="email">Email</label>
-                <input type="text" th:field="*{email}" id="email" placeholder="Email" class="form-control form-control-lg">
+                <label for="emails">Emails</label>
+                <input type="text" th:field="*{emails}" id="emails" placeholder="Emails" class="form-control form-control-lg">
+                <br/>
+                <label for="phones">Phones</label>
+                <input type="text" th:field="*{phones}" id="phones" placeholder="Phones" class="form-control form-control-lg">
                 <br/>
                 <input type="submit" value="Update User" class="btn btn-primary">
             </form>
+        </div>
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <p class="col-md-4 mb-0 text-body-secondary">© 2024 TaskAPI</p>
+                <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a th:href="@{/tasks}" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Tasks</a></li>
+                    <li class="nav-item"><a th:href="@{/users}" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Users</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">About</a></li>
+                </ul>
+            </footer>
         </div>
     </body>
 </html>

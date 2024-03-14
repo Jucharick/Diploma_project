@@ -46,7 +46,8 @@ public class User {
      * Дата рождения
      */
     @Column(name = "birthday", nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate birthday;
 
     /**

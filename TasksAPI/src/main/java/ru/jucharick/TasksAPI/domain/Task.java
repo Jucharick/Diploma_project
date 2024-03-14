@@ -44,7 +44,7 @@ public class Task {
     /**
      * срок выполнения задачи
      */
-    @Column(name = "update_date_time", nullable = false)
+    @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
 
     /**

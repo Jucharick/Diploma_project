@@ -2,37 +2,44 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <title>Create task</title>
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" th:href="@{/users}">Return to users</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/tasks}">Return to tasks</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/task-create}">Create new task</a>
-                            </li>
-                        </ul>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Return to users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/tasks}">Return to tasks</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/task-create}">Create new task</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </header>
         <div class="container">
             <form action="#" th:action="@{/task-create}" th:object="${task}" method="post" class="form-group">
-                <br/>
                 <label for="title">Title</label>
                 <input type="text" th:field="*{title}" id="title" placeholder="title" class="form-control form-control-lg">
                 <br/>
                 <label for="description">Description</label>
                 <input type="text" th:field="*{description}" id="description" placeholder="description" class="form-control form-control-lg mb-3">
+                <label for="createDate">Create</label>
+                <input type="datetime-local" th:field="*{createDate}" id="createDate" placeholder="create date" class="form-control form-control-lg mb-3">
+                <label for="updateDate">Update</label>
+                <input type="datetime-local" th:field="*{updateDate}" id="updateDate" placeholder="update" class="form-control form-control-lg mb-3">
+                <label for="deadline">Deadline</label>
+                <input type="datetime-local" th:field="*{deadline}" id="deadline" placeholder="deadline" class="form-control form-control-lg mb-3">
                 <label for="status">Status</label>
                 <select class="form-select form-select-lg mb-3" th:field="*{status}" id="status" >
                     <option th:value="assigned">assigned</option>
@@ -54,10 +61,10 @@
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-body-secondary">© 2024 TaskAPI</p>
                 <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a th:href="@{/tasks}" class="nav-link px-2 text-body-secondary">Tasks</a></li>
-                    <li class="nav-item"><a th:href="@{/users}" class="nav-link px-2 text-body-secondary">Users</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                    <li class="nav-item"><a th:href="@{/tasks}" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Tasks</a></li>
+                    <li class="nav-item"><a th:href="@{/users}" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Users</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">About</a></li>
                 </ul>
             </footer>
         </div>
