@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS tasks (
     title varchar(50) NOT NULL,
     create_date_time timestamp NOT NULL,
     update_date_time timestamp NOT NULL,
+    deadline timestamp NOT NULL,
     description text NOT NULL,
     status  ENUM('assigned', 'in_progress', 'resolved', 'reopened', 'closed') NOT NULL,
     requested_by int NULL,

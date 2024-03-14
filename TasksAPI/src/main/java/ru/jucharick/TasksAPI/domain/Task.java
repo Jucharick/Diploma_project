@@ -42,6 +42,12 @@ public class Task {
     private LocalDateTime updateDate;
 
     /**
+     * срок выполнения задачи
+     */
+    @Column(name = "update_date_time", nullable = false)
+    private LocalDateTime deadline;
+
+    /**
      * описание задачи
      */
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")

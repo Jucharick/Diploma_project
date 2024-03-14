@@ -59,6 +59,7 @@ public class iTaskService implements TaskServiceApi {
         taskById.setTitle(task.getTitle());
         taskById.setCreateDate(task.getCreateDate());
         taskById.setUpdateDate(LocalDateTime.now());
+        taskById.setDeadline(taskById.getDeadline());
         taskById.setDescription(task.getDescription());
         taskById.setStatus(task.getStatus());
         taskById.setRequestedBy(task.getRequestedBy());
