@@ -1,7 +1,10 @@
 package ru.jucharick.TasksAPI.services.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.jucharick.TasksAPI.domain.Task;
 import ru.jucharick.TasksAPI.domain.User;
 import ru.jucharick.TasksAPI.exception.TaskNotFoundException;
@@ -12,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class iTaskService implements TaskServiceApi {
     //region Поля
     /**
@@ -23,49 +26,67 @@ public class iTaskService implements TaskServiceApi {
     //endregion
 
     //region
+    /**
+     * Получение всех задач.
+     */
+    @Override
+    public List<Task> findAll(){
+        return taskRepository.findAll();
+    }
 
     /**
-     * поиск задач по исполнителю
+     * Получение задачи по id.
+     */
+    @Override
+    public Task getTaskById(Long id){
+        return taskRepository.findById(id).orElseThrow(()
+                -> new TaskNotFoundException("Task by " + id + " not found!"));
+    }
+
+    /**
+     * Создание задачи.
+     */
+    @Override
+    public Task createTask(Task task){
+        task.setCreateDate(LocalDateTime.now());
+        task.setUpdateDate(LocalDateTime.now());
+        return taskRepository.save(task);
+    }
+
+    /**
+     * Удаление задачи по id.
+     */
+    @Override
+    public void deleteById(Long id) {
+        taskRepository.deleteById(id);
+    }
+
+    /**
+     * Обновление задачи по id.
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     */
+    @Override
+    @Transactional
+    public Task updateTask(Long id, Task task) {
+        Task taskById = getTaskById(id);
+        taskById.setTitle(task.getTitle());
+        taskById.setUpdateDate(LocalDateTime.now());
+        taskById.setDeadline(task.getDeadline());
+        taskById.setDescription(task.getDescription());
+        taskById.setStatus(task.getStatus());
+        taskById.setRequestedBy(task.getRequestedBy());
+        taskById.setAssignedBy(task.getAssignedBy());
+        taskById.setAssigneeID(task.getAssigneeID());
+        return taskRepository.save(taskById);
+    }
+
+    /**
+     * Получение всех задач по UserId.
      */
     @Override
     public List<Task> findTaskByUserId(User user){
         return taskRepository.findByAssigneeID(user);
     }
 
-    @Override
-    public List<Task> findAll(){
-        return taskRepository.findAll();
-    }
-
-    @Override
-    public Task getTaskById(Integer id){
-        return taskRepository.findById(id).orElseThrow(()
-                -> new TaskNotFoundException());
-    }
-
-    @Override
-    public Task saveTask(Task task){
-        return taskRepository.save(task);
-    }
-
-    @Override
-    public void deleteById(Integer id) {
-        taskRepository.deleteById(id);
-    }
-
-    @Override
-    public void updateTask(Integer id, Task task) {
-        Task taskById = getTaskById(id);
-        taskById.setTitle(task.getTitle());
-        taskById.setCreateDate(task.getCreateDate());
-        taskById.setUpdateDate(LocalDateTime.now());
-        taskById.setDeadline(taskById.getDeadline());
-        taskById.setDescription(task.getDescription());
-        taskById.setStatus(task.getStatus());
-        taskById.setRequestedBy(task.getRequestedBy());
-        taskById.setAssignedBy(task.getAssignedBy());
-        taskById.setAssigneeID(task.getAssigneeID());
-        taskRepository.save(taskById);
-    }
     //endregion
 }

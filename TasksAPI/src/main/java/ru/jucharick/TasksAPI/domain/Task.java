@@ -21,16 +21,16 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
-    private int task_id;
+    private Long task_id;
 
     /**
-     * заголовок задачи
+     * Заголовок задачи
      */
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
     /**
-     * дата создания задачи
+     * Дата создания задачи
      */
     @Column(name = "create_date_time", nullable = false)
     private LocalDateTime createDate;
@@ -42,19 +42,19 @@ public class Task {
     private LocalDateTime updateDate;
 
     /**
-     * срок выполнения задачи
+     * Срок выполнения задачи
      */
     @Column(name = "deadline", nullable = false)
     private LocalDateTime deadline;
 
     /**
-     * описание задачи
+     * Описание задачи
      */
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
     /**
-     * статус задачи:
+     * Статус задачи:
      *   assigned
      *   in_progress
      *   resolved
@@ -66,21 +66,21 @@ public class Task {
     private TaskStatus status;
 
     /**
-     * кто запросил задачу (ID of the user)
+     * Кто запросил задачу (ID of the user)
      */
     @ManyToOne
     @JoinColumn(name = "requested_by")
     private User requestedBy;
 
     /**
-     * кто назначил задачу (ID of the user)
+     * Кто назначил задачу (ID of the user)
      */
     @ManyToOne
     @JoinColumn(name = "assigned_by")
     private User assignedBy;
 
     /**
-     * исполнитель (ID of the user)
+     * Исполнитель (ID of the user)
      */
     @ManyToOne
     @JoinColumn(name = "assignee_id")

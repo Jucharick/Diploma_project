@@ -22,7 +22,7 @@
                                     <a class="nav-link" th:href="@{/task-create}">Create new task</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/user-create">Create new user</a>
+                                    <a class="nav-link" th:href="@{/user-create}">Create new user</a>
                                 </li>
                             </ul>
                         </div>
@@ -64,7 +64,8 @@
                     </div>
                 </div>
             </div>
-            <a th:href="@{task-update/{id}(id=${task.task_id})}" class="btn btn-warning mt-3">Update task</a>
+            <a th:href="@{/task-update/{id}(id=${task.task_id})}" class="btn btn-warning mt-3">Update task</a>
+            <a th:href="@{/tasks}" class="btn btn-warning mt-3">Return to tasks list</a>
         </div>
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

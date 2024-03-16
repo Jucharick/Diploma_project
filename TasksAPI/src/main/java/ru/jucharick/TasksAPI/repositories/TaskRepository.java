@@ -10,10 +10,10 @@ import java.util.List;
 
 @EnableJpaRepositories
 @Repository
-public interface TaskRepository extends JpaRepository<Task, Integer> {
+public interface TaskRepository extends JpaRepository<Task, Long> {
 
     /**
-     * поиск задач по исполнителю
+     * Поиск задач по id исполнителя
      */
-    List<Task> findByAssigneeID(User idUser);
+    List<Task> findByAssigneeID(User user);
 }

@@ -22,7 +22,7 @@
                                     <a class="nav-link" th:href="@{/task-create}">Create new task</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/user-create">Create new user</a>
+                                    <a class="nav-link" th:href="@{/user-create}">Create new user</a>
                                 </li>
                             </ul>
                         </div>
@@ -32,31 +32,22 @@
         </header>
         <div class="container">
             <form action="#" th:action="@{/user-update}" th:object="${user}" method="post" class="form-group">
-                <br/>
                 <label for="firstName">First name</label>
                 <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name" class="form-control form-control-lg">
-                <br/>
                 <label for="lastName">Last name</label>
                 <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name" class="form-control form-control-lg">
-                <br/>
                 <label for="patronymic">Patronymic</label>
                 <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Patronymic" class="form-control form-control-lg">
-                <br/>
                 <label for="birthday">Birthday</label>
                 <input type="date" th:field="*{birthday}" id="birthday" placeholder="Birthday" class="form-control form-control-lg">
-                <br/>
                 <label for="position">Position</label>
                 <input type="text" th:field="*{position}" id="position" placeholder="Position" class="form-control form-control-lg">
-                <br/>
                 <label for="team">Team</label>
                 <input type="text" th:field="*{team}" id="team" placeholder="Team" class="form-control form-control-lg">
-                <br/>
                 <label for="emails">Emails</label>
                 <input type="text" th:field="*{emails}" id="emails" placeholder="Emails" class="form-control form-control-lg">
-                <br/>
                 <label for="phones">Phones</label>
                 <input type="text" th:field="*{phones}" id="phones" placeholder="Phones" class="form-control form-control-lg">
-                <br/>
                 <input type="submit" value="Update User" class="btn btn-primary">
             </form>
         </div>

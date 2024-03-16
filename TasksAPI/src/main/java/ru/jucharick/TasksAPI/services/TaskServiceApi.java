@@ -6,10 +6,33 @@ import ru.jucharick.TasksAPI.domain.User;
 import java.util.List;
 
 public interface TaskServiceApi {
+    /**
+     * Получение всех задач.
+     */
     List<Task> findAll();
-    Task getTaskById(Integer id);
-    Task saveTask(Task task);
-    void deleteById(Integer id);
-    void updateTask(Integer id, Task task);
+
+    /**
+     * Получение задачи по id.
+     */
+    Task getTaskById(Long id);
+
+    /**
+     * Создание задачи.
+     */
+    Task createTask(Task task);
+
+    /**
+     * Удаление задачи по id.
+     */
+    void deleteById(Long id);
+
+    /**
+     * Обновление задачи по id.
+     */
+    Task updateTask(Long id, Task task);
+
+    /**
+     * Получение всех задач по UserId.
+     */
     List<Task> findTaskByUserId(User user);
 }

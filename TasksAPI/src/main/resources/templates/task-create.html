@@ -22,7 +22,7 @@
                                     <a class="nav-link" th:href="@{/task-create}">Create new task</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/user-create">Create new user</a>
+                                    <a class="nav-link" th:href="@{/user-create}">Create new user</a>
                                 </li>
                             </ul>
                         </div>
@@ -34,13 +34,8 @@
             <form action="#" th:action="@{/task-create}" th:object="${task}" method="post" class="form-group">
                 <label for="title">Title</label>
                 <input type="text" th:field="*{title}" id="title" placeholder="title" class="form-control form-control-lg">
-                <br/>
                 <label for="description">Description</label>
                 <input type="text" th:field="*{description}" id="description" placeholder="description" class="form-control form-control-lg mb-3">
-                <label for="createDate">Create</label>
-                <input type="datetime-local" th:field="*{createDate}" id="createDate" placeholder="create date" class="form-control form-control-lg mb-3">
-                <label for="updateDate">Update</label>
-                <input type="datetime-local" th:field="*{updateDate}" id="updateDate" placeholder="update" class="form-control form-control-lg mb-3">
                 <label for="deadline">Deadline</label>
                 <input type="datetime-local" th:field="*{deadline}" id="deadline" placeholder="deadline" class="form-control form-control-lg mb-3">
                 <label for="status">Status</label>
