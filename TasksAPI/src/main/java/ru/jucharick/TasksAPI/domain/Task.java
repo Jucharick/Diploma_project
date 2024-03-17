@@ -36,7 +36,7 @@ public class Task {
     private LocalDateTime createDate;
 
     /**
-     * дата изменения задачи
+     * Дата изменения задачи
      */
     @Column(name = "update_date_time", nullable = false)
     private LocalDateTime updateDate;

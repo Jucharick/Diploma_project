@@ -64,13 +64,12 @@ public class UserController {
     public String updateUserForm(@PathVariable("id") Long id, Model model){
         User user = userService.getUserById(id);
         model.addAttribute("user", user);
-        model.addAttribute("id", id);
         return "user-update";
     }
 
     @PostMapping("/user-update")
-    public String updateUser(@ModelAttribute("user") User user,@ModelAttribute("id") Long id){
-        userService.updateUser(id, user);
+    public String updateUser(@ModelAttribute("user") User user){
+        userService.updateUser(user.getId(), user);
         return "redirect:/users";
     }
     //endregion

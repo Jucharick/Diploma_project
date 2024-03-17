@@ -58,18 +58,26 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
+    /**
+     * Изменение задачи.
+     * @return представление для изменения данных.
+     */
     @GetMapping("/task-update/{id}")
-    public String updateTaskForm(@PathVariable("id") Long id, Model model){
+    public String getTaskUpdateForm(@PathVariable("id") Long id, Model model){
         Task task = taskService.getTaskById(id);
         model.addAttribute("task", task);
-        model.addAttribute("id", id);
+        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  получен запрос на изменение задачи id " + task.getTask_id() + " " + task.getTitle());
         return "task-update";
     }
 
+    /**
+     * Получение данных об измененном задачи с формы представления.
+     * @return перенаправление на страницу со списком пользователей.
+     */
     @PostMapping("/task-update")
-    public String updateTask(@PathVariable("id") Long id, @RequestParam("task") Task task){
+    public String postTaskUpdateForm(@ModelAttribute Task task){
+        taskService.updateTask(task.getTask_id(), task);
         fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод updateTask() " + "изменена таска id " + task.getTask_id() + " " + task.getTitle());
-        taskService.updateTask(id, task);
        return "redirect:/tasks";
     }
     //endregion

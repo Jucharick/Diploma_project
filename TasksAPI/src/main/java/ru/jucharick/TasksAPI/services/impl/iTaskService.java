@@ -67,17 +67,24 @@ public class iTaskService implements TaskServiceApi {
      */
     @Override
     @Transactional
-    public Task updateTask(Long id, Task task) {
+    public void updateTask(Long id, Task task) {
         Task taskById = getTaskById(id);
-        taskById.setTitle(task.getTitle());
-        taskById.setUpdateDate(LocalDateTime.now());
-        taskById.setDeadline(task.getDeadline());
-        taskById.setDescription(task.getDescription());
-        taskById.setStatus(task.getStatus());
-        taskById.setRequestedBy(task.getRequestedBy());
-        taskById.setAssignedBy(task.getAssignedBy());
-        taskById.setAssigneeID(task.getAssigneeID());
-        return taskRepository.save(taskById);
+        if (taskById != null) {
+            System.out.println(taskById.getTask_id());
+            taskById.setTitle(task.getTitle());
+            taskById.setUpdateDate(LocalDateTime.now());
+            if (task.getDeadline() != null) {
+                taskById.setDeadline(task.getDeadline());
+            }
+            taskById.setDescription(task.getDescription());
+            taskById.setStatus(task.getStatus());
+            taskById.setRequestedBy(task.getRequestedBy());
+            taskById.setAssignedBy(task.getAssignedBy());
+            taskById.setAssigneeID(task.getAssigneeID());
+            taskRepository.save(taskById);
+        } else {
+            throw new TaskNotFoundException("Task not found");
+        }
     }
 
     /**
@@ -87,6 +94,5 @@ public class iTaskService implements TaskServiceApi {
     public List<Task> findTaskByUserId(User user){
         return taskRepository.findByAssigneeID(user);
     }
-
     //endregion
 }

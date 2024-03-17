@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 
 import ru.jucharick.TasksAPI.domain.Team;
 import ru.jucharick.TasksAPI.domain.User;
+import ru.jucharick.TasksAPI.exception.TaskNotFoundException;
 import ru.jucharick.TasksAPI.exception.UserNotFoundException;
 import ru.jucharick.TasksAPI.exception.UserUpdateException;
 import ru.jucharick.TasksAPI.repositories.EmailRepository;
@@ -94,35 +95,40 @@ public class iUserService implements UserServiceApi {
 
     /**
      * Обновление пользователя по id.
-     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
      */
     @Override
     @Transactional
     public void updateUser(Long id, User user) {
         User existingUser = getUserById(id);
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
-        existingUser.setPatronymic(user.getPatronymic());
-        existingUser.setBirthday(user.getBirthday());
-        existingUser.setPosition(user.getPosition());
-        existingUser.setTeam(user.getTeam());
-
-        List<Phone> existingPhones = existingUser.getPhones();
-        for (Phone phone : user.getPhones()) {
-            if (!existingPhones.contains(phone)) {
-                existingPhones.add(phone);
+        if (existingUser != null) {
+            existingUser.setFirstName(user.getFirstName());
+            existingUser.setLastName(user.getLastName());
+            existingUser.setPatronymic(user.getPatronymic());
+            if (user.getBirthday() != null) {
+                existingUser.setBirthday(user.getBirthday());
             }
-        }
-        existingUser.setPhones(existingPhones);
+            existingUser.setPosition(user.getPosition());
+            existingUser.setTeam(user.getTeam());
 
-        List<Email> existingEmails = existingUser.getEmails();
-        for (Email email : user.getEmails()) {
-            if (!existingEmails.contains(email)) {
-                existingEmails.add(email);
+            List<Phone> existingPhones = existingUser.getPhones();
+            for (Phone phone : user.getPhones()) {
+                if (!existingPhones.contains(phone)) {
+                    existingPhones.add(phone);
+                }
             }
+            existingUser.setPhones(existingPhones);
+
+            List<Email> existingEmails = existingUser.getEmails();
+            for (Email email : user.getEmails()) {
+                if (!existingEmails.contains(email)) {
+                    existingEmails.add(email);
+                }
+            }
+            existingUser.setEmails(existingEmails);
+            userRepository.save(existingUser);
+        } else {
+            throw new UserNotFoundException("User not found");
         }
-        existingUser.setEmails(existingEmails);
-        userRepository.save(existingUser);
     }
 
     /**
