@@ -29,7 +29,7 @@ public interface TaskServiceApi {
     /**
      * Обновление задачи по id.
      */
-    void updateTask(Long id, Task task);
+    Task updateTask(Long id, Task task);
 
     /**
      * Получение всех задач по UserId.

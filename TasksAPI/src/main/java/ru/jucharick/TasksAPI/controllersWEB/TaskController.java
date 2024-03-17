@@ -46,14 +46,14 @@ public class TaskController {
     @PostMapping("/task-create")
     public String createTask(Task task){
         fileGateway.writeToFile(task.getTitle() + ".txt", task.toString());
-        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод createTask() " + "создана таска " + task.getTitle());
+        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод createTask() WEB " + "создана таска " + task.getTitle());
         taskService.createTask(task);
         return "redirect:/tasks";
     }
 
     @GetMapping ("/task-delete/{id}")
     public String deleteTask(@PathVariable("id") Long id){
-        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод deleteTask() " + "удалена таска id " + id);
+        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод deleteTask() WEB " + "удалена таска id " + id);
         taskService.deleteById(id);
         return "redirect:/tasks";
     }
@@ -66,7 +66,7 @@ public class TaskController {
     public String getTaskUpdateForm(@PathVariable("id") Long id, Model model){
         Task task = taskService.getTaskById(id);
         model.addAttribute("task", task);
-        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  получен запрос на изменение задачи id " + task.getTask_id() + " " + task.getTitle());
+        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  получен WEB запрос на изменение задачи id " + task.getTask_id() + " " + task.getTitle());
         return "task-update";
     }
 
@@ -77,7 +77,7 @@ public class TaskController {
     @PostMapping("/task-update")
     public String postTaskUpdateForm(@ModelAttribute Task task){
         taskService.updateTask(task.getTask_id(), task);
-        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод updateTask() " + "изменена таска id " + task.getTask_id() + " " + task.getTitle());
+        fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод updateTask() WEB " + "изменена таска id " + task.getTask_id() + " " + task.getTitle());
        return "redirect:/tasks";
     }
     //endregion

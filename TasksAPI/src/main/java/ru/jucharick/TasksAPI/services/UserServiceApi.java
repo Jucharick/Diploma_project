@@ -29,25 +29,12 @@ public interface UserServiceApi {
     /**
      * Обновление пользователя по id.
      */
-    void updateUser(Long id, User user);
+    User updateUser(Long id, User user);
 
     /**
-     * Добавление нового телефона пользователю.
+     * Получение всех команд.
      */
-    void addPhone(User updateUser, String phone);
+    List<Team> findAllTeams();
 
-    /**
-     * Добавление нового email пользователю.
-     */
-    void addEmail(User updateUser, String email);
-
-    /**
-     * Удаление номера телефона у пользователя.
-     */
-    User removePhone(Long userId, String phone);
-
-    /**
-     * Удаление email у пользователя.
-     */
-    User removeEmail(Long userId, String email);
+    Team getTeamById(Long id);
 }

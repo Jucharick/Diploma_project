@@ -66,13 +66,13 @@ public class User {
     /**
      * email
      */
-    @OneToMany(mappedBy = "user")
-    private List<Email> emails;
+    @Column(name = "email", nullable = true)
+    private List<String> email;
 
     /**
-     * List<Phone>
+     * Phone
      */
-    @OneToMany(mappedBy = "user")
-    private List<Phone> phones;
+    @Column(name = "phone", nullable = true)
+    private List<String> phone;
     //endregion
 }

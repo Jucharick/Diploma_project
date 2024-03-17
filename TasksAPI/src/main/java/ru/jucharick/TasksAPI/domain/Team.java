@@ -27,8 +27,4 @@ public class Team {
     @Column(name = "team_description", nullable = false, length = 100)
     private String teamDescription;
     //endregion
-
-    //region Методы
-
-    //endregion
 }

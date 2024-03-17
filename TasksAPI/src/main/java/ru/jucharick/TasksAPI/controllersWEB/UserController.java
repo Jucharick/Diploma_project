@@ -3,13 +3,11 @@ package ru.jucharick.TasksAPI.controllersWEB;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import ru.jucharick.TasksAPI.domain.Task;
+import ru.jucharick.TasksAPI.domain.Task;;
 import ru.jucharick.TasksAPI.domain.Team;
 import ru.jucharick.TasksAPI.domain.User;
 import ru.jucharick.TasksAPI.services.TaskServiceApi;
@@ -44,12 +42,15 @@ public class UserController {
     }
 
     @GetMapping("/user-create")
-    public String createUserForm(User user){
+    public String createUserForm(User user, Model model){
+        List<Team> teams = userService.findAllTeams();
+        model.addAttribute("teams", teams);
+        model.addAttribute("user", new User());
         return "user-create";
     }
 
     @PostMapping("/user-create")
-    public String createUser(User user){
+    public String createUser(@ModelAttribute("user") User user){
         userService.createUser(user);
         return "redirect:/users";
     }
@@ -63,6 +64,8 @@ public class UserController {
     @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model){
         User user = userService.getUserById(id);
+        List<Team> teams = userService.findAllTeams();
+        model.addAttribute("teams", teams);
         model.addAttribute("user", user);
         return "user-update";
     }

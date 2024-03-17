@@ -58,11 +58,11 @@
                         </li>
                         <li class="list-group-item">
                             <div class="fw-bold">Emails:</div>
-                            <div th:text="${user.emails}"></div>
+                            <div th:text="${user.email}"></div>
                         </li>
                         <li class="list-group-item">
                             <div class="fw-bold">Phones:</div>
-                            <div th:text="${user.phones}"></div>
+                            <div th:text="${user.phone}"></div>
                         </li>
                     </ul>
                 </div>
@@ -83,17 +83,17 @@
                                 <li class="list-group-item" th:text="${task.status}"></li>
                             </ul>
                             <div class="card-body">
-                                <div class="alert alert-secondary" role="alert">Запрошена <a th:href="@{/user/{id}(id=${task.requestedBy.id})}" th:text="${task.requestedBy.firstName} + ' ' + ${task.requestedBy.lastName}" class="alert-link"></a></div>
-                                <div class="alert alert-secondary" role="alert">Назначена <a th:href="@{/user/{id}(id=${task.assignedBy.id})}" th:text="${task.assignedBy.firstName} + ' ' + ${task.assignedBy.lastName}" class="alert-link"></a></div>
-                                <div class="alert alert-secondary" role="alert">Исполнитель <a th:href="@{/user/{id}(id=${task.assigneeID.id})}" th:text="${task.assigneeID.firstName} + ' ' + ${task.assigneeID.lastName}" class="alert-link"></a></div>
+                                <div th:if="${task.requestedBy.id != null}" class="alert alert-secondary" role="alert">Запрошена <a th:href="@{/user/{id}(id=${task.requestedBy.id})}" th:text="${task.requestedBy.firstName} + ' ' + ${task.requestedBy.lastName}" class="alert-link"></a></div>
+                                <div th:if="${task.assignedBy.id != null}" class="alert alert-secondary" role="alert">Назначена <a th:href="@{/user/{id}(id=${task.assignedBy.id})}" th:text="${task.assignedBy.firstName} + ' ' + ${task.assignedBy.lastName}" class="alert-link"></a></div>
+                                <div th:if="${task.assigneeID.id != null}" class="alert alert-secondary" role="alert">Исполнитель <a th:href="@{/user/{id}(id=${task.assigneeID.id})}" th:text="${task.assigneeID.firstName} + ' ' + ${task.assigneeID.lastName}" class="alert-link"></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
         </div>
             <a th:href="@{/user-update/{id}(id=${user.id})}" class="btn btn-warning">Update user</a>
             <a th:href="@{/user-delete/{id}(id=${user.id})}" class="btn btn-secondary">Delete user</a>
+            <a th:href="@{/users}" class="btn btn-warning mt-3">Return to users list</a>
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-body-secondary">© 2024 TaskAPI</p>

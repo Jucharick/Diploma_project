@@ -44,13 +44,23 @@
                 <input type="date" th:field="*{birthday}" id="birthday" placeholder="Birthday" class="form-control form-control-lg mb-3">
                 <label for="position">Position</label>
                 <input type="text" th:field="*{position}" id="position" placeholder="Position" class="form-control form-control-lg mb-3">
-                <label for="team">Team</label>
-                <input type="text" th:field="*{team}" id="team" placeholder="Team" class="form-control form-control-lg mb-3">
-                <label for="emails">Emails</label>
-                <input type="text" th:field="*{emails}" id="emails" placeholder="Emails" class="form-control form-control-lg mb-3">
-                <label for="phones">Phones</label>
-                <input type="text" th:field="*{phones}" id="phones" placeholder="Phones" class="form-control form-control-lg mb-3">
+                <div>
+                    <label for="team">Team:</label>
+                    <select id="team" th:field="*{team.teamId}" class="form-control form-control-lg mb-3">
+                        <option th:each="teamItem : ${teams}" th:value="${teamItem.teamId}" th:text="${teamItem.teamTitle}"></option>
+                    </select>
+                </div>
+
+
+                <label for="email">Emails</label>
+                <input type="text" th:field="*{email}" id="email" placeholder="Email" class="form-control form-control-lg mb-3">
+
+
+                <label for="phone">Phones</label>
+                <input type="text" th:field="*{phone}" id="phone" class="phone form-control form-control-lg mb-3">
+
                 <input type="submit" value="Update User" class="btn btn-primary">
+                <a th:href="@{/user/{id}(id=${user.id})}" class="btn btn-warning">Cancel</a>
             </form>
         </div>
         <div class="container">
@@ -64,5 +74,8 @@
                 </ul>
             </footer>
         </div>
+        <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+        <script>$(".phone").mask("+7(999)999-9999");</script>
     </body>
 </html>

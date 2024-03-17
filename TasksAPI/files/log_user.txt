@@ -1,0 +1,6 @@
+2024-03-17T17:07:41.766110400  вызван метод createUser() REST создан User Baggins
+2024-03-17T17:07:54.815779800  вызван метод createUser() REST создан User Baggins
+2024-03-17T17:08:44.336772300  вызван метод deleteUser() REST удален User id 8
+2024-03-17T17:11:13.546044800  вызван метод updateUser() REST изменена таска id null Baggins
+2024-03-17T17:11:54.203845600  вызван метод updateUser() REST изменена таска id null Baggins
+2024-03-17T17:12:34.272203800  вызван метод updateUser() REST изменена таска id null Baggins

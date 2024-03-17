@@ -53,6 +53,7 @@
                 <label for="assigneeID">assignee</label>
                 <input type="text" th:field="*{assigneeID}" id="assigneeID" placeholder="assignee" class="form-control form-control-lg mb-3">
                 <input type="submit" value="Create Task" class="btn btn-primary">
+                <a th:href="@{/tasks}" class="btn btn-warning">Cancel</a>
             </form>
         </div>
         <div class="container">

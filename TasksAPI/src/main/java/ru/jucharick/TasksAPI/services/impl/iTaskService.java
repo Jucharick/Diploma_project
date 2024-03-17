@@ -1,10 +1,8 @@
 package ru.jucharick.TasksAPI.services.impl;
 
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.jucharick.TasksAPI.domain.Task;
 import ru.jucharick.TasksAPI.domain.User;
 import ru.jucharick.TasksAPI.exception.TaskNotFoundException;
@@ -63,14 +61,12 @@ public class iTaskService implements TaskServiceApi {
 
     /**
      * Обновление задачи по id.
-     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      */
     @Override
     @Transactional
-    public void updateTask(Long id, Task task) {
+    public Task updateTask(Long id, Task task) {
         Task taskById = getTaskById(id);
         if (taskById != null) {
-            System.out.println(taskById.getTask_id());
             taskById.setTitle(task.getTitle());
             taskById.setUpdateDate(LocalDateTime.now());
             if (task.getDeadline() != null) {
@@ -81,7 +77,7 @@ public class iTaskService implements TaskServiceApi {
             taskById.setRequestedBy(task.getRequestedBy());
             taskById.setAssignedBy(task.getAssignedBy());
             taskById.setAssigneeID(task.getAssigneeID());
-            taskRepository.save(taskById);
+            return taskRepository.save(taskById);
         } else {
             throw new TaskNotFoundException("Task not found");
         }
