@@ -1,5 +1,6 @@
 package ru.jucharick.TasksAPI.controllersREST;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,5 +66,6 @@ public class TaskControllerREST {
         fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод updateTask() REST " + "изменена таска id " + task.getTask_id() + " " + task.getTitle());
         return new ResponseEntity<>(taskService.updateTask(id, task), HttpStatus.OK);
     }
+
     //endregion
 }

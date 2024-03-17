@@ -62,7 +62,7 @@ public class UserControllerREST {
      */
     @PutMapping("/users/update/{id}")
     public ResponseEntity<User> updateTask(@PathVariable Long id, @RequestBody User user) {
-        fileGateway.writeLog("log_user.txt", LocalDateTime.now() + "  вызван метод updateUser() REST " + "изменена таска id " + user.getId()+ " " + user.getLastName());
+        fileGateway.writeLog("log_user.txt", LocalDateTime.now() + "  вызван метод updateUser() REST " + "изменен User id " + id + " " + user.getLastName());
         return new ResponseEntity<>(userServiceApi.updateUser(id, user), HttpStatus.OK);
     }
     //endregion

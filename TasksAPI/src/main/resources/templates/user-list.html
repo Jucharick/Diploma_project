@@ -59,7 +59,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <p><a href="/user-create" class="btn btn-info">Create user</a></p>
+                <a th:href="@{/user-create}" class="btn btn-info">Create user</a>
+                <a class="btn btn-info" th:href="@{/users/report/excel}" target="_blank">Download Excel Report</a>
             </div>
         </div>
         <div class="container">

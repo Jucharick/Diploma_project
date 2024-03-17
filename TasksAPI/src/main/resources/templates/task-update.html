@@ -38,8 +38,10 @@
                 <input type="text" th:field="*{title}" id="title" placeholder="title" class="form-control form-control-lg mb-3">
                 <label for="description">Description</label>
                 <input type="text" th:field="*{description}" id="description" placeholder="description" class="form-control form-control-lg mb-3">
+
                 <label for="deadline">Deadline</label>
-                <input type="datetime-local" th:field="*{deadline}" id="deadline" th:value="${task.deadline}" class="form-control form-control-lg mb-3">
+                <input type="text" th:field="*{deadline}" id="deadline" th:value="${task.deadline}" class="form-control form-control-lg mb-3">
+
                 <label for="status">Status</label>
                 <select class="form-select form-select-lg mb-3" th:field="*{status}" id="status" >
                     <option th:value="assigned">assigned</option>

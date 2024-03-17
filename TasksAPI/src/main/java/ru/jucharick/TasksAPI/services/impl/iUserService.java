@@ -21,6 +21,9 @@ public class iUserService implements UserServiceApi {
      * UserRepository
      */
     private final UserRepository userRepository;
+    /**
+     * TeamRepository
+     */
     private final TeamRepository teamRepository;
 
     //endregion

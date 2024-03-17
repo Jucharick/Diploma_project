@@ -60,7 +60,8 @@
                     </tr>
                     </tbody>
                 </table>
-                <p><a href="/task-create" class="btn btn-info">Create new task</a></p>
+                <a th:href="@{/task-create}" class="btn btn-info">Create new task</a>
+                <a class="btn btn-info" th:href="@{/tasks/report/excel}" target="_blank">Download Excel Report</a>
             </div>
         </div>
         <div class="container">

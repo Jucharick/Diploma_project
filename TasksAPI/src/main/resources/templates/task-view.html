@@ -65,6 +65,7 @@
                 </div>
             </div>
             <a th:href="@{/task-update/{id}(id=${task.task_id})}" class="btn btn-warning mt-3">Update task</a>
+            <a th:href="@{/task-delete/{id}(id=${task.task_id})}" class="btn btn-secondary mt-3">Delete task</a>
             <a th:href="@{/tasks}" class="btn btn-warning mt-3">Return to tasks list</a>
         </div>
         <div class="container">

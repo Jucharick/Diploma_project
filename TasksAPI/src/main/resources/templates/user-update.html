@@ -41,7 +41,7 @@
                 <label for="patronymic">Patronymic</label>
                 <input type="text" th:field="*{patronymic}" id="patronymic" placeholder="Patronymic" class="form-control form-control-lg mb-3">
                 <label for="birthday">Birthday</label>
-                <input type="date" th:field="*{birthday}" id="birthday" placeholder="Birthday" class="form-control form-control-lg mb-3">
+                <input type="text" id="birthday" class="form-control form-control-lg mb-3" th:value="${user.birthday}" th:field="*{birthday}">
                 <label for="position">Position</label>
                 <input type="text" th:field="*{position}" id="position" placeholder="Position" class="form-control form-control-lg mb-3">
                 <div>
@@ -76,6 +76,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
-        <script>$(".phone").mask("+7(999)999-9999");</script>
+        <script>$(".phone").mask("+7(999)999-9999");</script>>
     </body>
 </html>

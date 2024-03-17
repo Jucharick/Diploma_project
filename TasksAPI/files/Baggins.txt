@@ -1,2 +1,0 @@
-User(id=null, firstName=Test_user, lastName=Baggins, patronymic=Baggins, birthday=1995-01-22, position=teamlead, team=Team(teamId=1, teamTitle=FSP, teamDescription=Financial services platform), email=[Bilbo@mail.ru], phone=[+7-812-999-99-99])
-User(id=null, firstName=Test_user, lastName=Baggins, patronymic=Baggins, birthday=1995-01-22, position=teamlead, team=null, email=null, phone=null)
