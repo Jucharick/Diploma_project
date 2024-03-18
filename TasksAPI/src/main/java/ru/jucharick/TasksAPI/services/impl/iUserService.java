@@ -59,7 +59,8 @@ public class iUserService implements UserServiceApi {
      */
     @Override
     public void deleteById(Long id) {
-        userRepository.deleteById(id);
+        User existingUser = getUserById(id);
+        userRepository.delete(existingUser);
     }
 
     /**

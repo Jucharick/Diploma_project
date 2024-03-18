@@ -20,7 +20,6 @@ public class iTaskService implements TaskServiceApi {
      * TaskRepository
      */
     private final TaskRepository taskRepository;
-
     //endregion
 
     //region
@@ -56,7 +55,8 @@ public class iTaskService implements TaskServiceApi {
      */
     @Override
     public void deleteById(Long id) {
-        taskRepository.deleteById(id);
+        Task taskById = getTaskById(id);
+        taskRepository.delete(taskById);
     }
 
     /**
