@@ -6,6 +6,7 @@
         <title>Task</title>
     </head>
     <body>
+        <!--  header-->
         <header>
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-body-tertiary rounded">
@@ -13,10 +14,10 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Return to users</a>
+                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">All users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" th:href="@{/tasks}">Return to tasks</a>
+                                    <a class="nav-link" th:href="@{/tasks}">All tasks</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/task-create}">Create new task</a>
@@ -24,12 +25,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/user-create}">Create new user</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/reports-manager}">Reports manager</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
+        <!-- /header-->
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -53,13 +58,22 @@
                             <div th:text="${task.status}"></div>
                         </li>
                     </ul>
-                    <div class="alert alert-secondary" role="alert">
+                    <div class="alert alert-secondary" role="alert" th:if="${task.requestedBy == null}" th:text="${'-'}">
+                        Запрошена
+                    </div>
+                    <div class="alert alert-secondary" role="alert" th:if="${task.requestedBy != null}">
                         Запрошена <a th:href="@{/user/{id}(id=${task.requestedBy.id})}" th:text="${task.requestedBy.firstName} + ' ' + ${task.requestedBy.lastName}" class="alert-link"></a>
                     </div>
-                    <div class="alert alert-secondary" role="alert">
+                    <div class="alert alert-secondary" role="alert" th:if="${task.assignedBy == null}" th:text="${'-'}">
+                        Назначена
+                    </div>
+                    <div class="alert alert-secondary" role="alert" th:if="${task.assignedBy != null}">
                         Назначена <a th:href="@{/user/{id}(id=${task.assignedBy.id})}" th:text="${task.assignedBy.firstName} + ' ' + ${task.assignedBy.lastName}" class="alert-link"></a>
                     </div>
-                    <div class="alert alert-secondary" role="alert">
+                    <div class="alert alert-secondary" role="alert" th:if="${task.assigneeID == null}" th:text="${'-'}">
+                        Исполнитель
+                    </div>
+                    <div class="alert alert-secondary" role="alert" th:if="${task.assigneeID != null}">
                         Исполнитель <a th:href="@{/user/{id}(id=${task.assigneeID.id})}" th:text="${task.assigneeID.firstName} + ' ' + ${task.assigneeID.lastName}" class="alert-link"></a>
                     </div>
                 </div>

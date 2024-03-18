@@ -6,6 +6,7 @@
         <title>User</title>
     </head>
     <body>
+        <!--  header-->
         <header>
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-body-tertiary rounded">
@@ -13,10 +14,10 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Return to users</a>
+                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">All users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" th:href="@{/tasks}">Return to tasks</a>
+                                    <a class="nav-link" th:href="@{/tasks}">All tasks</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/task-create}">Create new task</a>
@@ -24,12 +25,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/user-create}">Create new user</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/reports-manager}">Reports manager</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
+        <!-- /header-->
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -93,7 +98,7 @@
         </div>
             <a th:href="@{/user-update/{id}(id=${user.id})}" class="btn btn-warning">Update user</a>
             <a th:href="@{/user-delete/{id}(id=${user.id})}" class="btn btn-secondary">Delete user</a>
-            <a class="btn btn-info" th:href="@{/user/{id}/report/excel(id=${user.id})}" target="_blank">Download users tasks to excel file</a>
+            <a class="btn btn-info" th:href="@{/user/report/excel/}+ ${user.id}" target="_blank">Download users tasks to excel file</a>
             <a th:href="@{/users}" class="btn btn-warning">Return to users list</a>
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

@@ -6,6 +6,7 @@
         <title>Create task</title>
     </head>
     <body>
+        <!--  header-->
         <header>
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-body-tertiary rounded">
@@ -13,10 +14,10 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Return to users</a>
+                                    <a class="nav-link active" aria-current="page" th:href="@{/users}">All users</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" th:href="@{/tasks}">Return to tasks</a>
+                                    <a class="nav-link" th:href="@{/tasks}">All tasks</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/task-create}">Create new task</a>
@@ -24,12 +25,16 @@
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{/user-create}">Create new user</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" th:href="@{/reports-manager}">Reports manager</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
             </div>
         </header>
+        <!-- /header-->
         <div class="container">
             <form action="#" th:action="@{/task-create}" th:object="${task}" method="post" class="form-group">
                 <label for="title">Title</label>
@@ -46,12 +51,30 @@
                     <option th:value="reopened">reopened</option>
                     <option th:value="closed">closed</option>
                 </select>
-                <label for="requestedBy">requested By</label>
-                <input type="text" th:field="*{requestedBy}" id="requestedBy" placeholder="requested By" class="form-control form-control-lg mb-3">
-                <label for="assignedBy">reassigned By</label>
-                <input type="text" th:field="*{assignedBy}" id="assignedBy" placeholder="assigned By" class="form-control form-control-lg mb-3">
-                <label for="assigneeID">assignee</label>
-                <input type="text" th:field="*{assigneeID}" id="assigneeID" placeholder="assignee" class="form-control form-control-lg mb-3">
+
+                <div>
+                    <label for="requestedBy">requested By</label>
+                    <select id="requestedBy" th:field="*{requestedBy.id}" class="form-control form-control-lg mb-3">
+                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstName} + ' ' + ${user.lastName}"></option>
+                    </select>
+                </div>
+
+
+                <div>
+                    <label for="assignedBy">assigned By</label>
+                    <select id="assignedBy" th:field="*{assignedBy.id}" class="form-control form-control-lg mb-3">
+                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstName} + ' ' + ${user.lastName}"></option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="assigneeID">assignee</label>
+                    <select id="assigneeID" th:field="*{assigneeID.id}" class="form-control form-control-lg mb-3">
+                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.firstName} + ' ' + ${user.lastName}"></option>
+                    </select>
+                </div>
+
+
                 <input type="submit" value="Create Task" class="btn btn-primary">
                 <a th:href="@{/tasks}" class="btn btn-warning">Cancel</a>
             </form>

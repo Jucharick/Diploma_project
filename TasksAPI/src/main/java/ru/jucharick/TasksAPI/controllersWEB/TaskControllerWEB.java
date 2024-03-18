@@ -9,8 +9,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import ru.jucharick.TasksAPI.domain.Task;
+import ru.jucharick.TasksAPI.domain.User;
 import ru.jucharick.TasksAPI.services.FileGateway;
 import ru.jucharick.TasksAPI.services.TaskServiceApi;
+import ru.jucharick.TasksAPI.services.UserServiceApi;
 
 @Controller
 @AllArgsConstructor
@@ -20,6 +22,10 @@ public class TaskControllerWEB {
      * TaskService
      */
     private final TaskServiceApi taskService;
+    /**
+     * UserService
+     */
+    private final UserServiceApi userService;
     private final FileGateway fileGateway;
     //endregion
 
@@ -39,12 +45,15 @@ public class TaskControllerWEB {
     }
 
     @GetMapping("/task-create")
-    public String creatTaskForm(Task task){
+    public String createTaskForm(Task task, Model model){
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        model.addAttribute("task", new Task());
         return "task-create";
     }
 
     @PostMapping("/task-create")
-    public String createTask(Task task){
+    public String createTask(@ModelAttribute("task")Task task){
         fileGateway.writeToFile(task.getTitle() + ".txt", task.toString());
         fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод createTask() WEB " + "создана таска " + task.getTitle());
         taskService.createTask(task);
@@ -64,8 +73,10 @@ public class TaskControllerWEB {
      */
     @GetMapping("/task-update/{id}")
     public String getTaskUpdateForm(@PathVariable("id") Long id, Model model){
+        List<User> users = userService.findAll();
         Task task = taskService.getTaskById(id);
         model.addAttribute("task", task);
+        model.addAttribute("users", users);
         fileGateway.writeLog("log.txt", LocalDateTime.now() + "  получен WEB запрос на изменение задачи id " + task.getTask_id() + " " + task.getTitle());
         return "task-update";
     }

@@ -1,4 +1,4 @@
-package ru.jucharick.TasksAPI.servicesReports;
+package ru.jucharick.TasksAPI.services.servicesReports;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;

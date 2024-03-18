@@ -1,5 +1,6 @@
 package ru.jucharick.TasksAPI.controllersWEB;
 
+import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -7,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import ru.jucharick.TasksAPI.domain.User;
 import ru.jucharick.TasksAPI.services.UserServiceApi;
-import ru.jucharick.TasksAPI.servicesReports.ReportService;
+import ru.jucharick.TasksAPI.services.servicesReports.ReportService;
+
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -24,6 +27,12 @@ public class ReportController {
     //endregion
 
     //region Методы
+    @GetMapping("/reports-manager")
+    public String showReportsManagerPage() {
+        return "reports-manager";
+    }
+
+
     /**
      * Выгрузка всех задач в excel.
      */
@@ -53,8 +62,10 @@ public class ReportController {
     /**
      * Выгрузка задач в разрезе пользователя в excel.
      */
-    @GetMapping("/user/{id}/report/excel")
-    public void generateExcelReportTasksByUser(@PathVariable("id") Long id, HttpServletResponse response) throws Exception{
+    @GetMapping("/user/report/excel/{id}")
+    public void generateExcelReportTasksByUser(@PathVariable("id") Long id, HttpServletResponse response, Model model) throws Exception{
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
         User user = userService.getUserById(id);
         response.setContentType("application/octet-stream");
         String headerKey = "Content-Disposition";
