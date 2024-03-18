@@ -71,7 +71,7 @@
             <div class="d-flex flex-wrap align-items-stretch">
                 <div th:each="task: ${tasks}">
                     <div>
-                        <div class="card m-4" style="width: 18rem; height: 34rem;">
+                        <div class="card m-2" style="width: 18rem; height: 34rem;">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${task.title}"></h5>
                                 <p class="card-text" style="height: 4rem;" th:text="${task.description}"></p>
@@ -93,6 +93,7 @@
         </div>
             <a th:href="@{/user-update/{id}(id=${user.id})}" class="btn btn-warning">Update user</a>
             <a th:href="@{/user-delete/{id}(id=${user.id})}" class="btn btn-secondary">Delete user</a>
+            <a class="btn btn-info" th:href="@{/user/{id}/report/excel(id=${user.id})}" target="_blank">Download users tasks to excel file</a>
             <a th:href="@{/users}" class="btn btn-warning">Return to users list</a>
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

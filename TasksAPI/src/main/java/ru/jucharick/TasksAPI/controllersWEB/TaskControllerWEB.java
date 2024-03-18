@@ -1,6 +1,5 @@
 package ru.jucharick.TasksAPI.controllersWEB;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import java.util.List;
 
 import ru.jucharick.TasksAPI.domain.Task;
 import ru.jucharick.TasksAPI.services.FileGateway;
-import ru.jucharick.TasksAPI.servicesReports.ReportService;
 import ru.jucharick.TasksAPI.services.TaskServiceApi;
 
 @Controller
@@ -22,10 +20,6 @@ public class TaskControllerWEB {
      * TaskService
      */
     private final TaskServiceApi taskService;
-    /**
-     * ReportService
-     */
-    private final ReportService reportService;
     private final FileGateway fileGateway;
     //endregion
 
@@ -85,20 +79,6 @@ public class TaskControllerWEB {
         taskService.updateTask(task.getTask_id(), task);
         fileGateway.writeLog("log.txt", LocalDateTime.now() + "  вызван метод updateTask() WEB " + "изменена таска id " + task.getTask_id() + " " + task.getTitle());
        return "redirect:/tasks";
-    }
-
-    /**
-     * Выгрузка всех задач в excel.
-     */
-    @GetMapping("/tasks/report/excel")
-    public void generateExcelReport(HttpServletResponse response) throws Exception{
-        response.setContentType("application/octet-stream");
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment;filename=tasks.xls";
-        response.setHeader(headerKey, headerValue);
-        reportService.generateExcelTasks(response);
-        response.flushBuffer();
-//        return "redirect:/tasks";
     }
     //endregion
 }

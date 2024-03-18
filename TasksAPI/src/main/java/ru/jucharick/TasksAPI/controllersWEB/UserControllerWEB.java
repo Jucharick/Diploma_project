@@ -1,6 +1,5 @@
 package ru.jucharick.TasksAPI.controllersWEB;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,6 @@ import ru.jucharick.TasksAPI.domain.Team;
 import ru.jucharick.TasksAPI.domain.User;
 import ru.jucharick.TasksAPI.services.TaskServiceApi;
 import ru.jucharick.TasksAPI.services.UserServiceApi;
-import ru.jucharick.TasksAPI.servicesReports.ReportService;
 
 @Controller
 @AllArgsConstructor
@@ -27,10 +25,6 @@ public class UserControllerWEB {
      * TaskService
      */
     private final TaskServiceApi taskService;
-    /**
-     * ReportService
-     */
-    private final ReportService reportService;
     //endregion
 
     //region Методы
@@ -84,19 +78,4 @@ public class UserControllerWEB {
         userService.updateUser(user.getId(), user);
         return "redirect:/users";
     }
-
-    /**
-     * Выгрузка всех пользователей в excel.
-     */
-    @GetMapping("/users/report/excel")
-    public void generateExcelReport(HttpServletResponse response) throws Exception{
-        response.setContentType("application/octet-stream");
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment;filename=users.xls";
-        response.setHeader(headerKey, headerValue);
-        reportService.generateExcelUsers(response);
-        response.flushBuffer();
-//        return "redirect:/users";
-    }
-    //endregion
 }
