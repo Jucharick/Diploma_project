@@ -2,3 +2,7 @@
 2024-03-17T17:07:54.815779800  вызван метод createUser() REST создан User Baggins
 2024-03-17T17:08:44.336772300  вызван метод deleteUser() REST удален User id 8
 2024-03-17T20:55:04.271818  вызван метод updateUser() REST изменен User id 2 Baggins - test-test
+2024-03-22T01:13:19.371104800  вызван метод createUser() REST создан User Baggins
+2024-03-22T01:13:38.562460200  вызван метод deleteUser() REST удален User id 8
+2024-03-22T01:13:47.948332300  вызван метод deleteUser() REST удален User id 4
+2024-03-22T01:14:14.010171400  вызван метод updateUser() REST изменен User id 2 Baggins - test-test
